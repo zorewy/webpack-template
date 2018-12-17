@@ -2,44 +2,50 @@ const path = require('path')
 const webpack = require('webpack')
 const config = require('../config')
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const ImageminPlugin = require('imagemin-webpack-plugin').default;
 const utils = require('./utils');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const UglifyjsWebpackPlugin = require('uglifyjs-webpack-plugin');
 
 function resolve (dir) {
 	return path.join(__dirname, '..', dir)
 }
 
+
 module.exports = {
 	context: path.resolve(__dirname, '../'),
-	mode: 'development', // development || production
+	// 模式
+	mode: "development",
+	// 入口
 	entry: {
-		app: './src/index.js'
+		app:'./src/index.js',
 	},
+	// 输出
 	output: {
-		path: config.build.assetsRoot,
-		filename: '[name].js',
-		// chunkFilename: '[name].js',
-		publicPath: process.env.NODE_ENV === 'production'
-			? config.build.assetsPublicPath
-			: config.dev.assetsPublicPath
+		path: path.resolve(__dirname,'../dist'),
+		filename:'js/[name].main.[hash].js',
+		publicPath: './'
 	},
-	resolve: {
-		extensions: ['.js', '.jsx', '.json', '.md'],
-		alias: {
-			'@': resolve('src'),
-		}
-	},
+	// loader模块
 	module: {
 		rules: [
 			{
-				test: /\.(png|jpe?g|gif|svg)(\?.*)?$/,
-				loader: 'url-loader',
-				options: {
-					limit: 10000,
-					name: utils.assetsPath('image/[name].[hash:7].[ext]')
+				test: /\.js$/,
+				exclude: /(node_modules|bower_components)/,
+				use: {
+					loader: 'babel-loader',
+					options: {
+						presets: ['@babel/preset-env']
+					}
 				}
+			},
+			{
+				test: /\.css$/,
+				exclude: /node_modules/,
+				use: ExtractTextPlugin.extract({
+					fallback: "style-loader",
+					use: "css-loader"
+				}),
 			},
 			{
 				test: /\.(mp4|webm|ogg|mp3|wav|flac|aac)(\?.*)?$/,
@@ -57,47 +63,38 @@ module.exports = {
 					name: utils.assetsPath('fonts/[name].[hash:7].[ext]')
 				}
 			},
+			{
+				test:/\.(png|jpg|gif|jpeg)/,  //是匹配图片文件后缀名称
+				use:[{
+					loader:'url-loader', //是指定使用的loader和loader的配置参数
+					options:{
+						limit: 10000,  //是把小于500B的文件打成Base64的格式，写入JS
+						publicPath: '../',
+						name: utils.assetsPath('images/[name].[hash:7].[ext]')
+					}
+				}]
+			}
 		]
 	},
-	// optimization: {
-	// 	splitChunks: {
-	// 		chunks: 'initial', // 只对入口文件处理
-	// 		cacheGroups: {
-	// 			vendor: { // split `node_modules`目录下被打包的代码到 `page/vendor.js && .css` 没找到可打包文件的话，则没有。css需要依赖 `ExtractTextPlugin`
-	// 				test: /node_modules\//,
-	// 				name: 'js/vendor',
-	// 				priority: 10,
-	// 				enforce: true
-	// 			},
-	// 			commons: { // split `common`和`components`目录下被打包的代码到`page/commons.js && .css`
-	// 				test: /common\/|components\//,
-	// 				name: 'js/commons',
-	// 				priority: 10,
-	// 				enforce: true
-	// 			}
-	// 		}
-	// 	},
-	// 	runtimeChunk: {
-	// 		name: 'page/manifest'
-	// 	}
-	// },
+	// 插件
 	plugins: [
-		new CleanWebpackPlugin(['../dist']),
-		// new webpack.ProvidePlugin({
-		// 	React:'react',
-		// 	ReactDOM:'react-dom',
-		// 	Component:['react','Component']
-		// }),
-		// new ExtractTextPlugin({
-		// 	filename: '[name].css',
-		// 	ignoreOrder: true
-		// }),
-		new HtmlWebpackPlugin(),
-		// new ImageminPlugin({
-		// 	disable: process.env.NODE_ENV !== 'production', // 开发时不启用
-		// 	pngquant: { // 图片质量
-		// 		quality: '95-100'
-		// 	}
-		// })
-	]
+		new CleanWebpackPlugin([path.join(__dirname, '../dist/*')]),
+		new HtmlWebpackPlugin({
+			minify:{ //是对html文件进行压缩
+				removeAttributeQuotes:true  //removeAttrubuteQuotes是却掉属性的双引号。
+			},
+			hash:true, //为了开发中js有缓存效果，所以加入hash，这样可以有效避免缓存JS。
+			template: './src/index.html'
+		}),
+		new UglifyjsWebpackPlugin(),
+		new ExtractTextPlugin("css/[name].css")
+	],
+	devServer: {
+		//
+		contentBase: path.join(__dirname, '../dist'),
+		host: 'localhost',
+		compress: true,
+		port: 1314,
+		hot: true
+	}
 }

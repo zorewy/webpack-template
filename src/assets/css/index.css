@@ -1,0 +1,12 @@
+.test{
+	color: #000;
+	width: 200px;
+	height: 200px;
+}
+.images{
+	width: 200px;
+	height: 200px;
+	background: url("./../../assets/image/1.jpg");
+	background-size:contain;
+	display: block;
+}
