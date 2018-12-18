@@ -23,20 +23,24 @@ module.exports = {
 	// 输出
 	output: {
 		path: path.resolve(__dirname,'../dist'),
-		filename:'js/[name].main.[hash].js',
-		publicPath: './'
+		filename:'static/js/[name].main.[hash].js',
+		publicPath: '/'
+	},
+	resolve: {
+		extensions: ['.js', '.jsx', '.json', '.md'],
+		alias: {
+			'@': resolve('src'),
+		}
 	},
 	// loader模块
 	module: {
 		rules: [
 			{
 				test: /\.js$/,
-				exclude: /(node_modules|bower_components)/,
+				// exclude: /(node_modules|bower_components)/,
+				include: [resolve('src'), resolve('test')],
 				use: {
-					loader: 'babel-loader',
-					options: {
-						presets: ['@babel/preset-env']
-					}
+					loader: 'babel-loader'
 				}
 			},
 			{
@@ -78,23 +82,17 @@ module.exports = {
 	},
 	// 插件
 	plugins: [
-		new CleanWebpackPlugin([path.join(__dirname, '../dist/*')]),
+	new CleanWebpackPlugin([path.join(__dirname, '../dist/*')]),
+
+		new webpack.HotModuleReplacementPlugin(),
 		new HtmlWebpackPlugin({
 			minify:{ //是对html文件进行压缩
 				removeAttributeQuotes:true  //removeAttrubuteQuotes是却掉属性的双引号。
 			},
 			hash:true, //为了开发中js有缓存效果，所以加入hash，这样可以有效避免缓存JS。
-			template: './src/index.html'
+			template: 'src/index.html'
 		}),
 		new UglifyjsWebpackPlugin(),
-		new ExtractTextPlugin("css/[name].css")
+		new ExtractTextPlugin("static/css/[name].css")
 	],
-	devServer: {
-		//
-		contentBase: path.join(__dirname, '../dist'),
-		host: 'localhost',
-		compress: true,
-		port: 1314,
-		hot: true
-	}
 }
