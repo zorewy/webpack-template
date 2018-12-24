@@ -4,7 +4,7 @@ const proxyConfig = require('./dev.proxy')
 module.exports = {
 	dev: {
 		assetsSubDirectory: 'static',
-		assetsPublicPath: './',
+		assetsPublicPath: '/',
 		proxyTable: proxyConfig,
 
 		// Various Dev Server settings
@@ -42,7 +42,7 @@ module.exports = {
 		// Paths
 		assetsRoot: path.resolve(__dirname, '../dist'),
 		assetsSubDirectory: 'static',
-		assetsPublicPath: './',
+		assetsPublicPath: '/',
 		/**
 		 * Source Maps
 		 */
