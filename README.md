@@ -7,7 +7,7 @@ ModuleConcatenationPlugin 废弃，使用optimization.concatenateModules替代�
 NamedModulesPlugin 废弃，使用optimization.namedModules替代，在生产环境默认开启。
 
 uglifyjs-webpack-plugin升级到了v1.0版本, 默认开启缓存和并行功能。
-
+-----
 optimization:{
   splitChunks:{
     chunks:async,//表示显示块的范围，三个可选值：
