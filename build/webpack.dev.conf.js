@@ -9,6 +9,7 @@ const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const UglifyjsWebpackPlugin = require('uglifyjs-webpack-plugin');
 
 module.exports = merge(webpackBase, {
+	mode: "development",
 	devServer: {
 		host: 'localhost',
 		port: 1314,

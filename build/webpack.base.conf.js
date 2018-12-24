@@ -7,8 +7,6 @@ function resolve (dir) {
 
 
 module.exports = {
-	// 模式
-	mode: "development",
 	// 入口
 	entry: {
 		app:'./src/index.js',
@@ -25,7 +23,6 @@ module.exports = {
 			'@': resolve('src'),
 		}
 	},
-
 	// loader模块
 	module: {
 		rules: [
