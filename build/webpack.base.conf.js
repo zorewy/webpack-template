@@ -2,7 +2,6 @@ const path = require('path')
 const webpack = require('webpack')
 const config = require('../config')
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const utils = require('./utils');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const UglifyjsWebpackPlugin = require('uglifyjs-webpack-plugin');
@@ -32,12 +31,17 @@ module.exports = {
 			'@': resolve('src'),
 		}
 	},
+	devServer: {
+		host: 'localhost',
+		port: 1314,
+		compress: true
+	},
 	// loader模块
 	module: {
 		rules: [
 			{
 				test: /\.js$/,
-				// exclude: /(node_modules|bower_components)/,
+				exclude: /(node_modules|bower_components)/,
 				include: [resolve('src'), resolve('test')],
 				use: {
 					loader: 'babel-loader'
@@ -56,7 +60,7 @@ module.exports = {
 				loader: 'url-loader',
 				options: {
 					limit: 10000,
-					name: utils.assetsPath('media/[name].[hash:7].[ext]')
+					name: 'media/[name].[hash:7].[ext]'
 				}
 			},
 			{
@@ -64,7 +68,7 @@ module.exports = {
 				loader: 'url-loader',
 				options: {
 					limit: 10000,
-					name: utils.assetsPath('fonts/[name].[hash:7].[ext]')
+					name: 'fonts/[name].[hash:7].[ext]'
 				}
 			},
 			{
@@ -74,7 +78,7 @@ module.exports = {
 					options:{
 						limit: 10000,  //是把小于500B的文件打成Base64的格式，写入JS
 						publicPath: '../',
-						name: utils.assetsPath('images/[name].[hash:7].[ext]')
+						name: 'images/[name].[hash:7].[ext]'
 					}
 				}]
 			}
@@ -82,17 +86,10 @@ module.exports = {
 	},
 	// 插件
 	plugins: [
-	new CleanWebpackPlugin([path.join(__dirname, '../dist/*')]),
-
 		new webpack.HotModuleReplacementPlugin(),
 		new HtmlWebpackPlugin({
-			minify:{ //是对html文件进行压缩
-				removeAttributeQuotes:true  //removeAttrubuteQuotes是却掉属性的双引号。
-			},
-			hash:true, //为了开发中js有缓存效果，所以加入hash，这样可以有效避免缓存JS。
-			template: 'src/index.html'
+			title: 'awd'
 		}),
-		new UglifyjsWebpackPlugin(),
-		new ExtractTextPlugin("static/css/[name].css")
+		new ExtractTextPlugin("css/[name].css")
 	],
 }

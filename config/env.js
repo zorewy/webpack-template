@@ -20,8 +20,6 @@ let Config = {
 	}
 };
 
-
-
 if( typeof module !== 'undefined' ){
 	module.exports =  Config;
 	module.export =  Config;
