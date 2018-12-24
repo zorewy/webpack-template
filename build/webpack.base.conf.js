@@ -1,10 +1,5 @@
 const path = require('path')
-const webpack = require('webpack')
-const config = require('../config')
-const HtmlWebpackPlugin = require('html-webpack-plugin');
-const CleanWebpackPlugin = require('clean-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
-const UglifyjsWebpackPlugin = require('uglifyjs-webpack-plugin');
 
 function resolve (dir) {
 	return path.join(__dirname, '..', dir)
@@ -12,7 +7,6 @@ function resolve (dir) {
 
 
 module.exports = {
-	context: path.resolve(__dirname, '../'),
 	// 模式
 	mode: "development",
 	// 入口
@@ -31,11 +25,7 @@ module.exports = {
 			'@': resolve('src'),
 		}
 	},
-	devServer: {
-		host: 'localhost',
-		port: 1314,
-		compress: true
-	},
+
 	// loader模块
 	module: {
 		rules: [
@@ -83,13 +73,5 @@ module.exports = {
 				}]
 			}
 		]
-	},
-	// 插件
-	plugins: [
-		new webpack.HotModuleReplacementPlugin(),
-		new HtmlWebpackPlugin({
-			title: 'awd'
-		}),
-		new ExtractTextPlugin("css/[name].css")
-	],
+	}
 }

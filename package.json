@@ -4,8 +4,9 @@
   "description": "webpack",
   "main": "index.js",
   "scripts": {
+    "test": "aa",
     "start": "webpack --config build/webpack.base.conf.js",
-    "dev": "webpack-dev-server --config build/webpack.base.conf.js"
+    "dev": "webpack-dev-server --config build/webpack.dev.conf.js"
   },
   "author": "",
   "license": "ISC",

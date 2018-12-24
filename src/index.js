@@ -12,7 +12,7 @@ import ReactDom from 'react-dom'
 class Index extends Component {
 	render(){
 		return (
-			<div>sadsa</div>
+			<div>测试</div>
 		)
 	}
 }
