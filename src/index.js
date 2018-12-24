@@ -1,5 +1,5 @@
 import '@/assets/css/index.css'
-import '@/components/hello'
+import Test from '@/components/Test'
 import React, {Component} from 'react'
 import ReactDom from 'react-dom'
 
@@ -9,14 +9,8 @@ import ReactDom from 'react-dom'
 	document.body.appendChild(element);
 })(document)
 
-class Index extends Component {
-	render(){
-		return (
-			<div className="test">测试</div>
-		)
-	}
-}
+
 ReactDom.render(
-	<Index/>,
+	<Test/>,
 	document.getElementById('app')
 )

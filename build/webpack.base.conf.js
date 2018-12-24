@@ -25,8 +25,8 @@ module.exports = {
 	},
 	// 输出
 	output: {
-		path: path.resolve(__dirname,'../dist'),
-		filename:'static/js/[name].main.[hash].js',
+		path: config.build.assetsRoot,
+		filename:'[name].main.[hash].js',
 		publicPath: process.env.NODE_ENV === 'production'
 			? config.build.assetsPublicPath
 			: config.dev.assetsPublicPath
