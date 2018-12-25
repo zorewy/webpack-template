@@ -5,8 +5,9 @@
  */
 
 const TestReducer = (state = [], action) => {
+	console.log(action)
 	switch (action.type) {
-		case 'ADD_TODO':
+		case 'TEST':
 			return [
 				...state,
 				{
@@ -15,12 +16,6 @@ const TestReducer = (state = [], action) => {
 					completed: false
 				}
 			]
-		case 'TOGGLE_TODO':
-			return state.map(todo =>
-				(todo.id === action.id)
-					? {...todo, completed: !todo.completed}
-					: todo
-			)
 		default:
 			return state
 	}

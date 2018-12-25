@@ -4,17 +4,23 @@ import ReactDOM from 'react-dom'
 import {createStore, applyMiddleware} from 'redux'
 import thunkMiddleware from 'redux-thunk'
 import { createLogger } from 'redux-logger'
-const loggerMiddleware = createLogger()
 import {Provider} from 'react-redux'
 import reducer from '@/middleware/reducers'
 import App from '@/components/Home'
+import {TEST} from "./middleware/TestManage/action";
 
+const loggerMiddleware = createLogger()
 
 const store = createStore(
 	reducer,
-	applyMiddleware(thunkMiddleware),
-	loggerMiddleware,
+	applyMiddleware(thunkMiddleware)
 )
+console.log(store.getState())
+store.dispatch({
+	type: TEST,
+	formData: ['1']
+})
+console.log(store.getState())
 /*
 HashRouter 根据hash值进行切换
 BrowserRouter
