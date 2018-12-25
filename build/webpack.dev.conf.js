@@ -35,7 +35,8 @@ module.exports = merge(webpackBase, {
 		}),
 		new webpack.HotModuleReplacementPlugin(),
 		new HtmlWebpackPlugin({
-			title: 'awd'
+			title: 'awd',
+			template: 'static/index.html'
 		}),
 		new ExtractTextPlugin("css/[name].css"),
 		new CopyWebpackPlugin([
