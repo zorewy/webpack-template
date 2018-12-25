@@ -1,16 +1,31 @@
 import '@/assets/css/index.css'
-import Test from '@/components/Test'
-import React, {Component} from 'react'
-import ReactDom from 'react-dom'
+import React from 'react'
+import ReactDOM from 'react-dom'
 
-(function (document){
-	const element = document.createElement('div');
-	element.setAttribute('id', 'app');
-	document.body.appendChild(element);
-})(document)
+import {createStore, applyMiddleware} from 'redux'
+import thunk from 'redux-thunk'
+import {Provider} from 'react-redux'
+import reducers from '@/middleware/reducers'
+import App from '@/components/Test'
 
 
-ReactDom.render(
-	<Test/>,
+const store = createStore(reducers)
+
+( function (document){
+	const element = document.createElement('div')
+	element.setAttribute('id', 'app')
+	document.body.appendChild(element)
+} )(document)
+
+
+/*
+HashRouter 根据hash值进行切换
+BrowserRouter
+*/
+
+ReactDOM.render(
+	<Provider store={store}>
+		<App/>
+	</Provider>,
 	document.getElementById('app')
 )

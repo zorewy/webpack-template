@@ -2,6 +2,7 @@ const path = require('path')
 const utils = require('./utils')
 const config = require('../config')
 
+
 function resolve (dir) {
 	return path.join(__dirname, '..', dir)
 }
@@ -40,7 +41,7 @@ module.exports = {
 	// loader模块
 	module: {
 		rules: [
-			// ...(config.dev.useEslint ? [createLintingRule()] : []),
+			...(config.dev.useEslint ? [createLintingRule()] : []),
 			{
 				test: /\.js$/,
 				exclude: /(node_modules|bower_components)/,

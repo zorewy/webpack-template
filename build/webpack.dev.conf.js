@@ -9,7 +9,7 @@ const CleanWebpackPlugin = require('clean-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin')
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const UglifyjsWebpackPlugin = require('uglifyjs-webpack-plugin');
-
+const DashboardPlugin = require('webpack-dashboard/plugin');
 module.exports = merge(webpackBase, {
 	mode: "development",
 	module: {
@@ -18,10 +18,18 @@ module.exports = merge(webpackBase, {
 	devServer: {
 		host: 'localhost',
 		port: 1314,
-		compress: true
+		// https: true,
+		// noInfo: true,
+		// after: function(app) {
+		// 	app.listeners(function (aa){
+		// 		console.log(aa)
+		// 	})
+		// 	console.log(app.host)
+		// }
 	},
 	// 插件
 	plugins: [
+		new DashboardPlugin(),
 		new webpack.DefinePlugin({
 			'process.env': require('../config/dev.env')
 		}),
