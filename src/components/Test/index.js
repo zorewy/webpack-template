@@ -1,4 +1,3 @@
-import '@/assets/scss/index.scss'
 import React, { Component } from 'react'
 import {Link} from 'react-router-dom'
 import {test} from '@/middleware/actions'
@@ -8,10 +7,10 @@ class Test extends Component {
 	}
 	render(){
 		const {props} = this
-		console.log(props)
+		// console.log(props)
 		return (
 			<div>
-				<Link to='/index'>2</Link>
+				<Link to='/index'>test</Link>
 			</div>
 		)
 	}

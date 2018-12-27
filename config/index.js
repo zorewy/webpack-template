@@ -16,7 +16,7 @@ module.exports = {
 		poll: false, // https://webpack.js.org/configuration/dev-server/#devserver-watchoptions-
 
 		// Use Eslint Loader?
-		useEslint: true,
+		useEslint: false,
 		// If true, eslint errors and warnings will also be shown in the error overlay
 		// in the browser.
 		showEslintErrorsInOverlay: false,
@@ -26,7 +26,7 @@ module.exports = {
 		 */
 
 		// https://webpack.js.org/configuration/devtool/#development
-		devtool: 'cheap-module-eval-source-map',
+		// devtool: 'cheap-module-eval-source-map',
 
 		// If you have problems debugging vue-files in devtools,
 		// set this to false - it *may* help
