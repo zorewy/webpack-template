@@ -1,8 +1,7 @@
 import '@/assets/scss/index.scss'
 import React, { Component } from 'react'
-import {Link} from 'react-router-dom'
-import {test} from '@/middleware/actions'
-class Test extends Component {
+
+class ErrorPage extends Component {
 	constructor(props){
 		super(props)
 	}
@@ -10,11 +9,11 @@ class Test extends Component {
 		const {props} = this
 		console.log(props)
 		return (
-			<div>
-				<Link to='/index'>2</Link>
+			<div className="error-page">
+				<div className="name">404</div>
 			</div>
 		)
 	}
 }
 
-export default Test
+export default ErrorPage

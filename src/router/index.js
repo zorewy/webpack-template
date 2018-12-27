@@ -1,24 +1,27 @@
 import React, { Component } from 'react';
-import {BrowserRouter} from 'react-router-dom'
+import { HashRouter,Switch,Route,Redirect } from 'react-router-dom';
 
 import Home from '@/components/Home'
 import Test from '@/components/Test'
+import ErrorPage from '@/components/Test'
 
-class RouterIndex extends Component{
+class allRouter extends Component{
 	constructor(props)  {
 		super(props)
 	}
 	render() {
 		const {props} = this
 		return (
-			<BrowserRouter>
+			<HashRouter>
 				<Switch>
 					<Route path="/" exact render={() => (<Redirect to="/index"/>)}/>
 					<Route path="/index" component={Home} />
 					<Route path="/test" component={Test} />
+					<Route path="/404" exact component={ErrorPage}/>
+					<Redirect to="/404" />
 				</Switch>
-			</BrowserRouter>
+			</HashRouter>
 		)
 	}
 }
-export default RouterIndex;
+export default allRouter;

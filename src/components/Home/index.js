@@ -1,5 +1,6 @@
 import '@/assets/scss/index.scss'
 import React, { Component } from 'react'
+import {Link} from 'react-router-dom'
 
 class Index extends Component {
 	constructor(props) {
@@ -10,7 +11,9 @@ class Index extends Component {
 		const {props} = this
 
 		return (
-			<div className="test">111</div>
+			<div>
+				<Link to='/index'>1</Link>
+			</div>
 		)
 	}
 }
