@@ -1,5 +1,16 @@
+@import 'antd/dist/antd.css';
+#app{
+	height: 100%;
+}
 .test{
 	background: #000;
 	width: 200px;
 	height: 200px;
+}
+.logo {
+	width: 120px;
+	height: 31px;
+	background: rgba(255,255,255,.2);
+	margin: 16px 28px 16px 0;
+	float: left;
 }

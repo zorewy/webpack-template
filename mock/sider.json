@@ -1,0 +1,82 @@
+[
+  {
+    "id": 1,
+    "title": "前端规范",
+    "submenu": [
+      {
+        "title": "HTML",
+        "url":"/html"
+      },
+      {
+        "title": "CSS/sass/less",
+        "url":"/css"
+      },
+      {
+        "title": "JavaScript",
+        "url":"/JavaScript"
+      },
+      {
+        "title": "注释与命名",
+        "url":"notes"
+      },
+      {
+        "title": "组件",
+        "url":"/components"
+      },
+      {
+        "title": "数据统计",
+        "url":"/directory"
+      },
+      {
+        "title": "文件目录",
+        "url":"directory"
+      }
+    ]
+  },
+  {
+    "id": 2,
+    "title": "页面头部",
+    "submenu": [
+      {
+        "title": "HTML",
+        "url":"/"
+      },
+      {
+        "title": "CSS/sass/less",
+        "url":"/home"
+      },
+      {
+        "title": "图片处理",
+        "url":"/directory"
+      },
+      {
+        "title": "注释与命名",
+        "url":""
+      },
+      {
+        "title": "数据统计",
+        "url":"/directory"
+      },
+      {
+        "title": "文件目录",
+        "url":""
+      },
+      {
+        "title": "---PC---",
+        "url":"/directory"
+      },
+      {
+        "title": "公共头部",
+        "url":"/directory"
+      },
+      {
+        "title": "页面兼容",
+        "url":"/directory"
+      },
+      {
+        "title": "---移动端---",
+        "url":"/directory"
+      }
+    ]
+  }
+]

@@ -5,17 +5,11 @@
  */
 
 const TestReducer = (state = [], action) => {
-	console.log(action)
 	switch (action.type) {
 		case 'TEST':
-			return [
-				...state,
-				{
-					id: action.id,
-					text: action.text,
-					completed: false
-				}
-			]
+			return Object.assign({}, state, {
+				formData: action.formData
+			})
 		default:
 			return state
 	}
