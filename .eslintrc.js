@@ -1,33 +1,29 @@
-/*
-	0或’off’：关闭规则。
-	1或’warn’：打开规则，并且作为一个警告（并不会导致检查不通过）。
-	2或’error’：打开规则，并且作为一个错误 (退出码为1，检查不通过)。
+// https://eslint.org/docs/user-guide/configuring
 
-	参数说明：
-	参数1 ： 错误等级
-	参数2 ： 处理方式
-*/
 module.exports = {
-	"root": true,
-	"parser": "babel-eslint",
-	"plugins": [
-		"html",
-		"flow-vars",
-		"react"
+	root: true,
+	parserOptions: {
+		parser: 'babel-eslint'
+	},
+	env: {
+		browser: true,
+	},
+	extends: [
+		// https://github.com/vuejs/eslint-plugin-vue#priority-a-essential-error-prevention
+		// consider switching to `plugin:vue/strongly-recommended` or `plugin:vue/recommended` for stricter rules.
+		'plugin:react/recommended',
+		// https://github.com/standard/standard/blob/master/docs/RULES-en.md
+		'standard'
 	],
-	"env": {
-		"browser": true,
-		"node": true,
-		"commonjs": true,
-		"es6": true,
-		"amd": true
-	},
-	"rules": {
-		"no-debugger": process.env.NODE_ENV === "production" ? 2 : 0,
-		"camelcase": 2,// 强制驼峰法命名
-	},
-	"settings": {
-		// 使用webpack中配置的resolve路径
-		"import/resolver": "webpack"
+	// required to lint *.vue files
+	plugins: [
+		'react'
+	],
+	// add your custom rules here
+	rules: {
+		// allow async-await
+		'generator-star-spacing': 'off',
+		// allow debugger during development
+		'no-debugger': process.env.NODE_ENV === 'production' ? 'error' : 'off'
 	}
 }
