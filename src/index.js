@@ -6,7 +6,6 @@ import { createLogger } from 'redux-logger'
 import {Provider} from 'react-redux'
 import reducer from '@/middleware/reducers'
 import AllRouter from '@/router/index'
-
 import { BrowserRouter } from 'react-router-dom'
 const loggerMiddleware = createLogger()
 const store = createStore(

@@ -18,8 +18,9 @@ const createLintingRule = () => ({
 	}
 })
 module.exports = {
-	mode: process.env.NODE_ENV === 'production' ?
-		'production': 'development',
+	// mode: process.env.NODE_ENV === 'production' ?
+	// 	'production': 'development',
+	mode: 'development',
 	// 入口
 	entry: {
 		app:'./src/index.js',
@@ -27,7 +28,7 @@ module.exports = {
 	// 输出
 	output: {
 		path: config.build.assetsRoot,
-		filename:'[name].main.[hash].js',
+		filename:'[name].js',
 		publicPath: process.env.NODE_ENV === 'production'
 			? config.build.assetsPublicPath
 			: config.dev.assetsPublicPath
@@ -43,9 +44,67 @@ module.exports = {
 		rules: [
 			...(config.dev.useEslint ? [createLintingRule()] : []),
 			{
+				test: /\.css$/,
+				use: [
+					{
+						loader: "style-loader" //在html中插入<style>标签
+					},
+					{
+						loader: "css-loader",//获取引用资源，如@import,url()
+					},
+					{
+						loader: "postcss-loader",
+						options: {
+							plugins:[
+								require('autoprefixer')({
+									browsers:['last 5 version']
+								})
+							]
+						}
+					}
+				]
+			},
+			{
+				test:/\.less$/,
+				use: [
+					{  loader: "style-loader"  },
+					{  loader: "css-loader" },
+					{
+						loader: "postcss-loader",//自动加前缀
+						options: {
+							plugins:[
+								require('autoprefixer')({
+									browsers:['last 5 version']
+								})
+							]
+						}
+					},
+					{  loader: "less-loader" }
+				]
+			},
+			{
+				test:/\.scss$/,
+				use:[
+					{  loader: "style-loader"  },
+					{
+						loader: "css-loader",
+					},
+					{  loader: "sass-loader" },
+					{
+						loader: "postcss-loader",
+						options: {
+							plugins:[
+								require('autoprefixer')({
+									browsers:['last 5 version']
+								})
+							]
+						}
+					}
+				]
+			},
+			{
 				test: /\.js$/,
-				exclude: /(node_modules|bower_components)/,
-				include: [resolve('src')],
+				include: [resolve('src'), resolve('test'), resolve('node_modules/webpack-dev-server/client')],
 				use: {
 					loader: 'babel-loader'
 				}

@@ -15,9 +15,9 @@ const FriendlyErrorsPlugin = require('friendly-errors-webpack-plugin')
 
 const devWebpackConfig = merge(webpackBase, {
 	mode: "development",
-	module: {
-		rules: utils.styleLoaders({ sourceMap: config.dev.cssSourceMap, usePostCSS: true })
-	},
+	// module: {
+	// 	rules: utils.styleLoaders({ sourceMap: config.dev.cssSourceMap, usePostCSS: true })
+	// },
 	devServer: {
 		clientLogLevel: 'warning',
 		host: 'localhost',
