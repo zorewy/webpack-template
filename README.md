@@ -1,4 +1,4 @@
-"# webpack-template" 
+"# webpack-template"
 webpack4.x
 NoEmitOnErrorsPlugin 废弃，使用optimization.noEmitOnErrors替代，在生产环境中默认开启该插件。
 
@@ -45,3 +45,4 @@ optimization:{
     }
   }
 }
+

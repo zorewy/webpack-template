@@ -7,6 +7,7 @@ import ErrorPage from '@/components/Test'
 
 class AllRouter extends Component{
 	render() {
+		console.log('213', this)
 		return (
 			<Switch>
 				<Route path="/" exact render={() => (<Redirect to="/index"/>)}/>

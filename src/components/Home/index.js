@@ -7,6 +7,9 @@ class Index extends Component {
 		super(props)
 		console.log(props)
 	}
+	componentWillMount(){
+		// 该方法在首次渲染之前调用，也是再 render 方法调用之前修改 state 的最后一次机会。
+	}
 	render(){
 		const {props} = this
 

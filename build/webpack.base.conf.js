@@ -41,7 +41,7 @@ module.exports = {
 	// loader模块
 	module: {
 		rules: [
-			// ...(config.dev.useEslint ? [createLintingRule()] : []),
+			...(config.dev.useEslint ? [createLintingRule()] : []),
 			{
 				test: /\.js$/,
 				exclude: /(node_modules|bower_components)/,
