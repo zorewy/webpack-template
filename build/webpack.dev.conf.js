@@ -16,7 +16,7 @@ const FriendlyErrorsPlugin = require('friendly-errors-webpack-plugin')
 const devWebpackConfig = merge(webpackBase, {
 	mode: "development",
 	// module: {
-	// 	rules: utils.styleLoaders({ sourceMap: config.dev.cssSourceMap, usePostCSS: true })
+	// 	rules: utils.styleLoaders({ sourceMap: config.dev.cssSourceMap, usePostCSS: true , extract: true,})
 	// },
 	devServer: {
 		clientLogLevel: 'warning',
@@ -52,7 +52,7 @@ const devWebpackConfig = merge(webpackBase, {
 			template: 'static/index.html',
 			filename: 'index.html'
 		}),
-		new ExtractTextPlugin("css/[name].css"),
+		// new ExtractTextPlugin("css/[name].css"),
 		new CopyWebpackPlugin([
 			{
 				from: path.resolve(__dirname, '../static'),

@@ -9,8 +9,11 @@ class Index extends Component {
 		this.state = {
 			name : ''
 		}
+		this.init = () => {
+			console.log('init----------------');
+		}
+		this.init()
 	}
-
 	render(){
 		const { props, state } = this
 		const data = props.formData

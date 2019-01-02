@@ -1,7 +1,7 @@
 const path = require('path')
 const utils = require('./utils')
 const config = require('../config')
-
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 function resolve (dir) {
 	return path.join(__dirname, '..', dir)
@@ -44,62 +44,30 @@ module.exports = {
 			...(config.dev.useEslint ? [createLintingRule()] : []),
 			{
 				test: /\.css$/,
-				use: [
-					{
-						loader: "style-loader" //在html中插入<style>标签
-					},
-					{
-						loader: "css-loader",//获取引用资源，如@import,url()
-					},
-					{
-						loader: "postcss-loader",
-						options: {
-							plugins:[
-								require('autoprefixer')({
-									browsers:['last 5 version']
-								})
-							]
-						}
-					}
-				]
+				use: ExtractTextPlugin.extract({
+					fallback: "style-loader",
+					use: "css-loader"
+				}),
 			},
 			{
 				test:/\.less$/,
-				use: [
-					{  loader: "style-loader"  },
-					{  loader: "css-loader" },
-					{
-						loader: "postcss-loader",//自动加前缀
-						options: {
-							plugins:[
-								require('autoprefixer')({
-									browsers:['last 5 version']
-								})
-							]
-						}
-					},
-					{  loader: "less-loader" }
-				]
+				use: ExtractTextPlugin.extract({
+					fallback: "style-loader",
+					use: [
+						{  loader: "css-loader" },
+						{  loader: "less-loader" }
+					]
+				})
 			},
 			{
 				test:/\.scss$/,
-				use:[
-					{  loader: "style-loader"  },
-					{
-						loader: "css-loader",
-					},
-					{  loader: "sass-loader" },
-					{
-						loader: "postcss-loader",
-						options: {
-							plugins:[
-								require('autoprefixer')({
-									browsers:['last 5 version']
-								})
-							]
-						}
-					}
-				]
+				use: ExtractTextPlugin.extract({
+					fallback: "style-loader",
+					use: [
+						{  loader: "css-loader" },
+						{  loader: "sass-loader" }
+					]
+				})
 			},
 			{
 				test: /\.js$/,
@@ -137,31 +105,34 @@ module.exports = {
 			}
 		]
 	},
-	// optimization: { //代码分割插件
-	// 	minimize: true,
-	// 	splitChunks: {
-	// 		chunks: 'async', //all对所有文件处理，async异步导入文件处理，initial只对入口文件处理。
-	// 		minSize: 30000,
-	// 		minChunks: 1,
-	// 		maxAsyncRequests: 5,
-	// 		maxInitialRequests: 3,
-	// 		automaticNameDelimiter: '~',
-	// 		// flagIncludedChunks: true,
-	// 		name: true,
-	// 		cacheGroups: {
-	// 			vendors: {
-	// 				test: /[\\/]node_modules[\\/]/,
-	// 				priority: -10
-	// 			},
-	// 			default: {
-	// 				minChunks: 2,
-	// 				priority: -20,
-	// 				reuseExistingChunk: true
-	// 			}
-	// 		}
-	//
-	// 	}
-	// },
+	optimization: { //代码分割插件
+		minimize: true,
+		splitChunks: {
+			chunks: 'async', //all对所有文件处理，async异步导入文件处理，initial只对入口文件处理。
+			minSize: 30000,
+			minChunks: 1,
+			maxAsyncRequests: 5,
+			maxInitialRequests: 3,
+			automaticNameDelimiter: '~',
+			// flagIncludedChunks: true,
+			name: true,
+			cacheGroups: {
+				vendors: {
+					test: /[\\/]node_modules[\\/]/,
+					priority: -10
+				},
+				default: {
+					minChunks: 2,
+					priority: -20,
+					reuseExistingChunk: true
+				}
+			}
+
+		}
+	},
+	plugins: [
+		new ExtractTextPlugin(utils.assetsPath('css/[name].css')),
+	],
 	node: {
 		setImmediate: false,
 		dgram: 'empty',

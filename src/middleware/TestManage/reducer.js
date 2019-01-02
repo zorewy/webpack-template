@@ -4,7 +4,9 @@
  * @Description:
  */
 
-const TestReducer = (state = [], action) => {
+const TestReducer = (state = {
+	formData: {}
+}, action) => {
 	switch (action.type) {
 		case 'TEST':
 			return Object.assign({}, state, {

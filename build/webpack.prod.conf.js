@@ -37,10 +37,6 @@ module.exports = merge(webpackBase, {
 			template: 'static/index.html',
 			filename: config.build.assetsRoot + '/index.html' ,//指定输出路径和文件名
 		}),
-		new ExtractTextPlugin({
-			filename: utils.assetsPath('css/[name].[hash].css'),
-			allChunks: true,
-		}),
 		// new CopyWebpackPlugin([
 		// 	{
 		// 		from: path.resolve(__dirname, '../static'),

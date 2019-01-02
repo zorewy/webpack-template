@@ -81,6 +81,7 @@ class AllRouter extends Component{
 								<Route path="/" exact render={() => (<Redirect to="/index"/>)}/>
 								<Route path="/index" component={Home} />
 								<Route path="/test" component={Test} />
+								<Route path="/login" component={Login} />
 								<Route path="/404" component={ErrorPage} />
 							</Switch>
 						</Content>
