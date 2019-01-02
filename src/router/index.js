@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Switch, Route, Redirect, Link } from 'react-router-dom';
 
 import Home from '@/components/Home'
+import Login from '@/components/UserManage/Login'
 import Test from '@/components/Test'
 import ErrorPage from '@/components/Test'
 import {
@@ -12,9 +13,12 @@ const { SubMenu } = Menu;
 const { Header, Content, Sider } = Layout;
 
 class AllRouter extends Component{
-
+	constructor(props) {
+		super(props)
+	}
 	render() {
-		console.log(this)
+		console.log('allRouter', this.props)
+		console.log('allRouter', this)
 		return (
 			<Layout className='page-wrapper'>
 				<Header className="header">
@@ -35,7 +39,7 @@ class AllRouter extends Component{
 					</Menu>
 				</Header>
 				<Layout>
-					<Sider width={200} style={{ background: '#fff',position: "fixed", top: 64, bottom: 0 }}>
+					<Sider width={200} style={{ background: '#fff' }}>
 						<Menu
 							mode="inline"
 							defaultSelectedKeys={['1']}
@@ -62,7 +66,7 @@ class AllRouter extends Component{
 							</SubMenu>
 						</Menu>
 					</Sider>
-					<Layout style={{ padding: '0 24px 24px 224px' }}>
+					<Layout style={{ padding: '0 24px 24px' }}>
 						<Breadcrumb style={{ margin: '16px 0' }}>
 							<Breadcrumb.Item>Home</Breadcrumb.Item>
 							<Breadcrumb.Item>List</Breadcrumb.Item>

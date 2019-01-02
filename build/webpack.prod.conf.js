@@ -12,13 +12,13 @@ const UglifyjsWebpackPlugin = require('uglifyjs-webpack-plugin');
 const FriendlyErrorsPlugin = require('friendly-errors-webpack-plugin')
 module.exports = merge(webpackBase, {
 	mode: "production",
-	module: {
-		rules: utils.styleLoaders({
-			sourceMap: config.build.productionSourceMap,
-			extract: true,
-			usePostCSS: true
-		})
-	},
+	// module: {
+	// 	rules: utils.styleLoaders({
+	// 		sourceMap: config.build.productionSourceMap,
+	// 		extract: true,
+	// 		usePostCSS: true
+	// 	})
+	// },
 	devtool: config.build.productionSourceMap ? config.build.devtool : false,
 	output: {
 		path: config.build.assetsRoot,

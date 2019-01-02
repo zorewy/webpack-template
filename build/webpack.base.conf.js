@@ -18,9 +18,8 @@ const createLintingRule = () => ({
 	}
 })
 module.exports = {
-	// mode: process.env.NODE_ENV === 'production' ?
-	// 	'production': 'development',
-	mode: 'development',
+	mode: process.env.NODE_ENV === 'production' ?
+		'production': 'development',
 	// 入口
 	entry: {
 		app:'./src/index.js',
@@ -138,31 +137,31 @@ module.exports = {
 			}
 		]
 	},
-	optimization: { //代码分割插件
-		minimize: true,
-		splitChunks: {
-			chunks: 'async', //all对所有文件处理，async异步导入文件处理，initial只对入口文件处理。
-			minSize: 30000,
-			minChunks: 1,
-			maxAsyncRequests: 5,
-			maxInitialRequests: 3,
-			automaticNameDelimiter: '~',
-			// flagIncludedChunks: true,
-			name: true,
-			cacheGroups: {
-				vendors: {
-					test: /[\\/]node_modules[\\/]/,
-					priority: -10
-				},
-				default: {
-					minChunks: 2,
-					priority: -20,
-					reuseExistingChunk: true
-				}
-			}
-
-		}
-	},
+	// optimization: { //代码分割插件
+	// 	minimize: true,
+	// 	splitChunks: {
+	// 		chunks: 'async', //all对所有文件处理，async异步导入文件处理，initial只对入口文件处理。
+	// 		minSize: 30000,
+	// 		minChunks: 1,
+	// 		maxAsyncRequests: 5,
+	// 		maxInitialRequests: 3,
+	// 		automaticNameDelimiter: '~',
+	// 		// flagIncludedChunks: true,
+	// 		name: true,
+	// 		cacheGroups: {
+	// 			vendors: {
+	// 				test: /[\\/]node_modules[\\/]/,
+	// 				priority: -10
+	// 			},
+	// 			default: {
+	// 				minChunks: 2,
+	// 				priority: -20,
+	// 				reuseExistingChunk: true
+	// 			}
+	// 		}
+	//
+	// 	}
+	// },
 	node: {
 		setImmediate: false,
 		dgram: 'empty',

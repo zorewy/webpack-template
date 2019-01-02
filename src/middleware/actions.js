@@ -4,3 +4,4 @@
  * @Description:
  */
 export * from './TestManage/action';
+export * from './UserManage/action';

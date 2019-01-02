@@ -42,14 +42,15 @@ const devWebpackConfig = merge(webpackBase, {
 	},
 	// 插件
 	plugins: [
-		new DashboardPlugin(),
 		new webpack.DefinePlugin({
 			'process.env': require('../config/dev.env')
 		}),
 		new webpack.HotModuleReplacementPlugin(),
+		new webpack.NoEmitOnErrorsPlugin(),
 		new HtmlWebpackPlugin({
 			title: 'awd',
-			template: 'static/index.html'
+			template: 'static/index.html',
+			filename: 'index.html'
 		}),
 		new ExtractTextPlugin("css/[name].css"),
 		new CopyWebpackPlugin([

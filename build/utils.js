@@ -45,6 +45,7 @@ exports.cssLoaders = function (options) {
 		// Extract CSS when that option is specified
 		// (which is the case during production build)
 		if (options.extract) {
+			console.log(loaders)
 			return ExtractTextPlugin.extract({
 				use: loaders,
 				fallback: 'style-loader'
@@ -82,6 +83,7 @@ exports.styleLoaders = function (options) {
 	return output
 }
 
+// 创建系统弹窗
 exports.createNotifierCallback = () => {
 	const notifier = require('node-notifier')
 

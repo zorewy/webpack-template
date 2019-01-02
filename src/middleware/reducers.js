@@ -5,7 +5,9 @@
  */
 import { combineReducers } from 'redux'
 import TestReducer from './TestManage/reducer'
+import UserReducer from './UserManage/reducer'
 
 export default combineReducers({
-	TestReducer
+	TestReducer,
+	UserReducer
 })

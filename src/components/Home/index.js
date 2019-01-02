@@ -1,123 +1,54 @@
 import React, { Component } from 'react'
+import { connect } from 'react-redux'
 import {Link} from 'react-router-dom'
 import { Button } from "antd";
-
+import {test} from '@/middleware/actions'
 class Index extends Component {
 	constructor(props) {
 		super(props)
-		console.log(props)
+		this.state = {
+			name : ''
+		}
 	}
-	componentWillMount(){
-		// 该方法在首次渲染之前调用，也是再 render 方法调用之前修改 state 的最后一次机会。
-	}
-	render(){
-		const {props} = this
 
+	render(){
+		const { props, state } = this
+		const data = props.formData
+		let setActionData = () => {
+			props.testProps({
+				name: 'sad'
+			})
+			this.setState({
+				name: '21312'
+			})
+		}
 		return (
 			<div>
 				<Link to='/index'>home</Link>
-				<div><Button type="primary">Primary</Button></div>
-				<div><Button type="primary">Primary</Button></div>
-				<div><Button type="primary">Primary</Button></div>
-				<div><Button type="primary">Primary</Button></div>
-				<div><Button type="primary">Primary</Button></div>
-				<div><Button type="primary">Primary</Button></div>
-				<div><Button type="primary">Primary</Button></div>
-				<div><Button type="primary">Primary</Button></div>
-				<div><Button type="primary">Primary</Button></div>
-				<div><Button type="primary">Primary</Button></div>
-				<div><Button type="primary">Primary</Button></div>
-				<div><Button type="primary">Primary</Button></div>
-				<div><Button type="primary">Primary</Button></div>
-				<div><Button type="primary">Primary</Button></div>
-				<div><Button type="primary">Primary</Button></div>
-				<div><Button type="primary">Primary</Button></div>
-				<div><Button type="primary">Primary</Button></div>
-				<div><Button type="primary">Primary</Button></div>
-				<div><Button type="primary">Primary</Button></div>
-				<div><Button type="primary">Primary</Button></div>
-				<div><Button type="primary">Primary</Button></div>
-				<div><Button type="primary">Primary</Button></div>
-				<div><Button type="primary">Primary</Button></div>
-				<div><Button type="primary">Primary</Button></div>
-				<div><Button type="primary">Primary</Button></div>
-				<div><Button type="primary">Primary</Button></div>
-				<div><Button type="primary">Primary</Button></div>
-				<div><Button type="primary">Primary</Button></div>
-				<div><Button type="primary">Primary</Button></div>
-				<div><Button type="primary">Primary</Button></div>
-				<div><Button type="primary">Primary</Button></div>
-				<div><Button type="primary">Primary</Button></div>
-				<div><Button type="primary">Primary</Button></div>
-				<div><Button type="primary">Primary</Button></div>
-				<div><Button type="primary">Primary</Button></div>
-				<div><Button type="primary">Primary</Button></div>
-				<div><Button type="primary">Primary</Button></div>
-				<div><Button type="primary">Primary</Button></div>
-				<div><Button type="primary">Primary</Button></div>
-				<div><Button type="primary">Primary</Button></div>
-				<div><Button type="primary">Primary</Button></div>
-				<div><Button type="primary">Primary</Button></div>
-				<div><Button type="primary">Primary</Button></div>
-				<div><Button type="primary">Primary</Button></div>
-				<div><Button type="primary">Primary</Button></div>
-				<div><Button type="primary">Primary</Button></div>
-				<div><Button type="primary">Primary</Button></div>
-				<div><Button type="primary">Primary</Button></div>
-				<div><Button type="primary">Primary</Button></div>
-				<div><Button type="primary">Primary</Button></div>
-				<div><Button type="primary">Primary</Button></div>
-				<div><Button type="primary">Primary</Button></div>
-				<div><Button type="primary">Primary</Button></div>
-				<div><Button type="primary">Primary</Button></div>
-				<div><Button type="primary">Primary</Button></div>
-				<div><Button type="primary">Primary</Button></div>
-				<div><Button type="primary">Primary</Button></div>
-				<div><Button type="primary">Primary</Button></div>
-				<div><Button type="primary">Primary</Button></div>
-				<div><Button type="primary">Primary</Button></div>
-				<div><Button type="primary">Primary</Button></div>
-				<div><Button type="primary">Primary</Button></div>
-				<div><Button type="primary">Primary</Button></div>
-				<div><Button type="primary">Primary</Button></div>
-				<div><Button type="primary">Primary</Button></div>
-				<div><Button type="primary">Primary</Button></div>
-				<div><Button type="primary">Primary</Button></div>
-				<div><Button type="primary">Primary</Button></div>
-				<div><Button type="primary">Primary</Button></div>
-				<div><Button type="primary">Primary</Button></div>
-				<div><Button type="primary">Primary</Button></div>
-				<div><Button type="primary">Primary</Button></div>
-				<div><Button type="primary">Primary</Button></div>
-				<div><Button type="primary">Primary</Button></div>
-				<div><Button type="primary">Primary</Button></div>
-				<div><Button type="primary">Primary</Button></div>
-				<div><Button type="primary">Primary</Button></div>
-				<div><Button type="primary">Primary</Button></div>
-				<div><Button type="primary">Primary</Button></div>
-				<div><Button type="primary">Primary</Button></div>
-				<div><Button type="primary">Primary</Button></div>
-				<div><Button type="primary">Primary</Button></div>
-				<div><Button type="primary">Primary</Button></div>
-				<div><Button type="primary">Primary</Button></div>
-				<div><Button type="primary">Primary</Button></div>
-				<div><Button type="primary">Primary</Button></div>
-				<div><Button type="primary">Primary</Button></div>
-				<div><Button type="primary">Primary</Button></div>
-				<div><Button type="primary">Primary</Button></div>
-				<div><Button type="primary">Primary</Button></div>
-				<div><Button type="primary">Primary</Button></div>
-				<div><Button type="primary">Primary</Button></div>
-				<div><Button type="primary">Primary</Button></div>
-				<div><Button type="primary">Primary</Button></div>
-				<div><Button type="primary">Primary</Button></div>
-				<div><Button type="primary">Primary</Button></div>
-				<div><Button type="primary">Primary</Button></div>
-				<div><Button type="primary">Primary</Button></div>
+				<Button className="" onClick={setActionData}>设置action的值</Button>
+				{
+					data && <div></div>
+				}
 			</div>
 		)
 	}
 }
 
+/*
+ connect(mapStateToProps, mapDispatchToProps, mergeProps, options = {})
+ 在connect 中 (mapStateToProps，mapDispatchToProps) 的返回值 必须是一个纯对象
+*/
+let mapStateToProps = (state) => {
+	return {
+		formData: state.TestReducer.formData
+	}
+}
+let mapDispatchToProps = (dispatch) => {
+	return {
+		testProps: (data) => {
+			dispatch(test(data))
+		}
+	}
+}
 
-export default Index
+export default connect(mapStateToProps, mapDispatchToProps) (Index)

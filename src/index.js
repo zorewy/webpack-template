@@ -1,17 +1,22 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import {createStore, applyMiddleware} from 'redux'
+import { createStore, applyMiddleware } from 'redux'
 import thunkMiddleware from 'redux-thunk'
 import { createLogger } from 'redux-logger'
-import {Provider} from 'react-redux'
+import { Provider } from 'react-redux'
 import reducer from '@/middleware/reducers'
 import AllRouter from '@/router/index'
 import { BrowserRouter } from 'react-router-dom'
-const loggerMiddleware = createLogger()
+
+const loggerMiddleware = createLogger({
+	log: 'info',
+})
 const store = createStore(
 	reducer,
-
-		applyMiddleware(thunkMiddleware)
+	applyMiddleware(
+		thunkMiddleware,
+		loggerMiddleware
+	)
 )
 
 
@@ -21,9 +26,9 @@ BrowserRouter
 */
 
 ReactDOM.render(
-	<Provider store={store}>
+	<Provider store={ store }>
 		<BrowserRouter>
-			<AllRouter />
+			<AllRouter/>
 		</BrowserRouter>
 	</Provider>,
 	document.getElementById('app')
