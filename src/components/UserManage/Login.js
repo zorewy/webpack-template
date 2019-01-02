@@ -24,9 +24,10 @@ class Login extends Component {
 		}
 		return (
 			<div>
+				<div className="pic"></div>
 				<Form onSubmit={ handleSubmit }>
 					<Form.Item>
-						{ getFieldDecorator('用户名', {
+						{ getFieldDecorator('userName', {
 							rules: [
 								{
 									required: true,

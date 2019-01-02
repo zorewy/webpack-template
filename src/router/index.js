@@ -17,8 +17,6 @@ class AllRouter extends Component{
 		super(props)
 	}
 	render() {
-		console.log('allRouter', this.props)
-		console.log('allRouter', this)
 		return (
 			<Layout className='page-wrapper'>
 				<Header className="header">
