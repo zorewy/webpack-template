@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import {Link} from 'react-router-dom'
 import { Button } from "antd";
 import {test} from '@/middleware/actions'
+const QRCode = require('qrcode.react')
 class Index extends Component {
 	constructor(props) {
 		super(props)
@@ -28,6 +29,7 @@ class Index extends Component {
 		return (
 			<div>
 				<Link to='/index'>home</Link>
+				<QRCode value="http://facebook.github.io/react/" bgColor='#f10' fgColor='#808080'></QRCode>
 				<Button className="" onClick={setActionData}>设置action的值</Button>
 				{
 					data && <div></div>

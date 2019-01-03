@@ -1,16 +1,23 @@
 import React, { Component } from 'react';
 import { Switch, Route, Redirect, Link } from 'react-router-dom';
 
-import Home from '@/components/Home'
-import Login from '@/components/UserManage/Login'
-import Test from '@/components/Test'
-import ErrorPage from '@/components/Test'
+// import Home from '@/components/Home'
+// import Login from '@/components/UserManage/Login'
+// import Test from '@/components/Test'
+// import ErrorPage from '@/components/Test'
+import AsyncLoader from '@/components/AsyncLoader'
 import {
 	Layout, Menu, Breadcrumb, Icon,
 } from 'antd';
 import '@/assets/scss/index.scss'
 const { SubMenu } = Menu;
 const { Header, Content, Sider } = Layout;
+
+const asyncHome = AsyncLoader(() => import ( /* webpackChunkName: "Home" */'@/components/Home'))
+const asyncLogin = AsyncLoader(() => import( /* webpackChunkName: "Login" */'@/components/UserManage/Login'))
+const asyncTest = AsyncLoader(() => import(/* webpackChunkName: "Test" */'@/components/Test'))
+// const asyncErrorPage = AsyncLoader(() => import(/* webpackChunkName: "ErrorPage" */'../components/ErrorPage'))
+
 
 class AllRouter extends Component{
 	constructor(props) {
@@ -33,7 +40,9 @@ class AllRouter extends Component{
 						<Menu.Item key="2">
 							<Link to="/test">test</Link>
 						</Menu.Item>
-						<Menu.Item key="3">nav 3</Menu.Item>
+						<Menu.Item key="3">
+							<Link to="/login">login</Link>
+						</Menu.Item>
 					</Menu>
 				</Header>
 				<Layout>
@@ -77,10 +86,9 @@ class AllRouter extends Component{
 
 							<Switch>
 								<Route path="/" exact render={() => (<Redirect to="/index"/>)}/>
-								<Route path="/index" component={Home} />
-								<Route path="/test" component={Test} />
-								<Route path="/login" component={Login} />
-								<Route path="/404" component={ErrorPage} />
+								<Route path="/index" component={asyncHome} />
+								<Route path="/test" component={asyncTest} />
+								<Route path="/login" component={asyncLogin} />
 							</Switch>
 						</Content>
 					</Layout>

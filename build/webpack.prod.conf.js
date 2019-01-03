@@ -27,7 +27,7 @@ module.exports = merge(webpackBase, {
 	},
 	// 插件
 	plugins: [
-		new CleanWebpackPlugin('../dist'),
+		new CleanWebpackPlugin(["dist"]),
 		new webpack.DefinePlugin({
 			'process.env': require('../config/prod.env')
 		}),
